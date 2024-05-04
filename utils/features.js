@@ -1,27 +1,15 @@
 import mongoose from "mongoose";
-// import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 // import { v4 as uuid } from "uuid";
 // import { v2 as cloudinary } from "cloudinary";
 // import { getBase64, getSockets } from "../lib/helper.js";
 
-// const cookieOptions = {
-//   maxAge: 15 * 24 * 60 * 60 * 1000,
-//   sameSite: "none",
-//   httpOnly: true,
-//   secure: true,
-// };
-
-
-
-// const sendToken = (res, user, code, message) => {
-//   const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
-
-//   return res.status(code).cookie("chattu-token", token, cookieOptions).json({
-//     success: true,
-//     user,
-//     message,
-//   });
-// };
+const cookieOptions = {
+  maxAge: 15 * 24 * 60 * 60 * 1000,
+  sameSite: "none",
+  httpOnly: true,
+  secure: true,
+};
 
 // const emitEvent = (req, event, users, data) => {
 //   const io = req.app.get("io");
@@ -63,10 +51,6 @@ import mongoose from "mongoose";
 //   // Delete files from cloudinary
 // };
 
-
-
-
-
 const connectDB = (uri) => {
   mongoose
     .connect(uri, { dbName: "pigeonDB" })
@@ -76,12 +60,25 @@ const connectDB = (uri) => {
     });
 };
 
+const sendToken = (res, user, code, message) => {
+  const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
 
+  return res
+    .status(code)
+    .cookie("pigeon-token", token,cookieOptions)
+    .json({
+      success: true,
+      // token,
+      // user,
+      message,  
+    });
+};
 export {
-  connectDB
-  // sendToken,
+  connectDB,
+  sendToken,
   // cookieOptions,
   // emitEvent,
   // deletFilesFromCloudinary,
   // uploadFilesToCloudinary,
 };
+
