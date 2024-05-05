@@ -63,22 +63,19 @@ const connectDB = (uri) => {
 const sendToken = (res, user, code, message) => {
   const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
 
-  return res
-    .status(code)
-    .cookie("pigeon-token", token,cookieOptions)
-    .json({
-      success: true,
-      // token,
-      // user,
-      message,  
-    });
+  return res.status(code).cookie("pigeon-token", token, cookieOptions).json({
+    success: true,
+    // token,
+    // user,
+    message,
+  });
 };
 export {
   connectDB,
   sendToken,
+  cookieOptions,
   // cookieOptions,
   // emitEvent,
   // deletFilesFromCloudinary,
   // uploadFilesToCloudinary,
 };
-
