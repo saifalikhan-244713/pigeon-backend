@@ -70,12 +70,19 @@ const sendToken = (res, user, code, message) => {
     message,
   });
 };
+const emitEvent = (req, event, users, data) => {
+  // const io = req.app.get("io");
+  // const usersSocket = getSockets(users);
+  // io.to(usersSocket).emit(event, data);
+  console.log("emitting event", event);
+};
+
 export {
   connectDB,
   sendToken,
   cookieOptions,
   // cookieOptions,
-  // emitEvent,
+  emitEvent,
   // deletFilesFromCloudinary,
   // uploadFilesToCloudinary,
 };
