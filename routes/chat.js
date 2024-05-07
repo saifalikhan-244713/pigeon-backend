@@ -22,7 +22,7 @@ import express from "express";
 //   validateHandler,
 // } from "../lib/validators.js";
 import { isAuthenticated } from "../middlewares/auth.js";
-import { getMyChats, newGroupChat } from "../controllers/chat.js";
+import { addMembers, getMyChats, getMyGroups, newGroupChat } from "../controllers/chat.js";
 // import { attachmentsMulter } from "../middlewares/multer.js";
 
 const app = express.Router();
@@ -74,5 +74,7 @@ const app = express.Router();
 app.use(isAuthenticated);
 app.post("/new",newGroupChat)
 app.get("/my",getMyChats)
+app.get("/my/groups",getMyGroups)
+app.put("/addmembers",addMembers)
 
 export default app;

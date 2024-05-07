@@ -35,6 +35,8 @@ app.listen(port, () => {
   console.log(`server started at ${port}`);
 });
 
+// console.log("kry",process.env.JWT_SECRET);
+
 export default app;
 
 

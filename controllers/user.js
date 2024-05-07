@@ -61,6 +61,7 @@ const getMyProfile = TryCatch(async (req, res) => {
     user,
   });
 });
+
 const logout = TryCatch(async (req, res) => {
   return res
     .status(200)
